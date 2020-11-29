@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <h1> Add Car</h1>
+    <form action="" method="POST">
+    <div class="form-group">
+        <label>Car Code</label>
+        <input type="text" name="carCode" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Brand</label>
+        <input type="text" name="make" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Body Type</label>
+        <input type="text" name="bodyType" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Colour</label>
+        <input type="text" name="colour" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Number of seats</label>
+        <input type="text" name="seats" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" value="">
+    </div>
+    <div class="form-group">
+        <label>Cost Per Hour</label>
+        <input type="text" name="costPerHour" class="form-control" value=0>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

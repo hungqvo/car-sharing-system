@@ -1,0 +1,166 @@
+.navbar {
+  float: left;
+  padding: 75px 125px;
+  height: 350px;
+  font-family: 'Open Sans', sans-serif;
+  width:100%;
+}
+
+/* .nav {
+  padding: 150px 0;
+} */
+
+.nav.navbar-nav li a {
+  color: black;
+  background-color: Transparent;
+}
+
+.navbar-left{
+  padding: 150px 0;
+}
+
+.navbar-right{
+  font-size: 120px;
+  font-weight: 800;
+  text-align: right;
+  padding: 100px 0;
+}
+
+.giant-title{
+  font-family: 'Open Sans';
+  font-weight: 800;
+  font-size: 120px;
+  color: #000;
+}
+.giant-title#center{
+  text-align:center;
+}
+
+.column-form{
+  float: left;
+  width: 50%;
+}
+
+.table-form{
+  display: table;
+  margin: 0 auto;
+}
+/* .table-form#parallel{
+  display: inline;
+  border-collapse: separate;
+  border-spacing: 18px 0;
+} */
+
+/* .table-form-group{
+  display: table-row-group;
+} */
+
+.form-inline {
+  font-size: 45px;
+  display: table-row;
+}
+
+.label-p {
+  font-family: 'Open Sans';
+  font-weight: 300;
+}
+
+.table-label {
+  display: table-cell;
+  padding-right: 35px;
+}
+
+.form-control {
+  background-color: #efefef;
+  border-color: #efefef;
+  border-radius: 0;
+  display: table-cell;
+}
+
+/* .caption {
+  display: table-caption;
+  caption-side: bottom;
+} */
+
+.btn-primary#arrow-button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  box-shadow: none;
+}
+
+.orline{
+  position: relative;
+  text-align:center;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 45px;
+  z-index: 1;
+}
+.orline:before {
+  border-top: 5px solid #000;
+  content:"";
+  margin: 0 auto;
+  position: absolute;
+  top: 23px; left: 0; right: 0; bottom: 0;
+  width: 50%;
+  z-index: -1;
+}
+.orline span {
+  background: #fff; 
+  padding: 0 15px; 
+}
+
+.btn-google#google{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  box-shadow: none;
+}
+
+.alert{
+  background-color: Transparent;
+  border: none;
+  /* cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  box-shadow: none; */
+}
+.alert p{
+  color: black;
+  text-align: center;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 45px;
+}
+
+.category-column{
+  display: table-cell;
+}
+
+.car-column{
+  width: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  padding-bottom: 100px;
+}
+
+.bold-booking{
+  font-family: 'Open Sans';
+  font-weight: 700;
+}
+
+.black-link#hover{
+  color: black;
+  background-color: Transparent;
+}
+
+.semiline{
+  text-decoration: underline;
+}

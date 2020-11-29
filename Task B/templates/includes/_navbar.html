@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Car Sharing System</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        {% if session.logged_in and session.userType == 'admin' %}
+        <li><a href="http://localhost:5000/dashboard">Dashboard</a></li>
+        <li><a href="http://localhost:5000/user_manager"> User Managment</a>
+        <li><a href="http://localhost:5000/car_manager"> Car Managment</a>
+        <li><a href="http://localhost:5000/issue_manager"> Issue Managment</a>
+        <li><a href="http://localhost:5000/engineer_manager">Issue Map</a>
+        {% endif %}
+        {% if session.logged_in and session.userType == 'engineer' %}
+        <li><a href="http://localhost:5000/engineer_manager"> Issue Managment</a>
+        {% endif %}
+        {% if session.logged_in and session.userType == 'manager' %}
+        <li><a href="http://localhost:5000/dashboard">Dashboard</a></li>
+        {% endif %}
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {% if session.logged_in %}
+          <li><a href="http://localhost:5000/logout">Logout</a></li>
+        {% else %}
+          <li><a href="/login">Login</a></li>
+        {% endif %}
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

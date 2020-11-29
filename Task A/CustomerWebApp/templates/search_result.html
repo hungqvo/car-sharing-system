@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div style="display: table">
+
+        {% for entry in final_entries %}
+
+            <div style="display: table-row;">
+                <div class="car-column">
+                    <div>
+                        <h1 class="giant-title" style="line-height: 70%;">{{ entry["make"] | upper }}</h1>
+                        <p class="giant-title" style="line-height: 100%;">{{ entry["carName"] | lower }}</p>
+                    </div>
+                    
+                    <div style="line-height: 250%; padding-top: 25px;">
+                        <p class="label-p" style="font-size: 32px">SEATS: {{ entry["seats"] }}</p>
+                        <p class="label-p" style="font-size: 32px">COLOUR: {{ entry["colour"] }}</p>
+                        <p class="label-p" style="font-size: 32px">BRAND: {{ entry["make"] | upper }}</p>
+                        <p class="label-p" style="font-size: 32px">COSTS: ${{ entry["costPerHour"] }}/HOUR</p>
+                    </div>
+                    
+                    {% if entry["carStatus"]=="Booked" or entry["carStatus"]=="In-use" %}
+                        <p class="bold-booking" style="font-size: 32px;">THIS CAR IS BOOKED</p>
+                    {% elif entry["carStatus"]=="Need-repair" %}
+                        <p class="bold-booking" style="font-size: 32px;">THIS CAR IS UNAVAILABLE</p>
+                    {% else %}
+                        <a class="bold-booking black-link" id="hover" style="font-size: 32px; text-decoration: underline;" href="{{ url_for('make_booking', id=entry['id']) }}">BOOK THIS CAR</a>
+                    {% endif %}
+                </div>
+
+                <div class="car-column">
+                    <img style="width: 150%;" src="{{ entry['carImage'] }}">
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

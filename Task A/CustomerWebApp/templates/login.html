@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1 class="giant-title" id="center">Login</h1>
+  
+  <form action="" method="POST">
+    <div class="table-form">
+      <div class="form-inline">
+        <label class="table-label"><p class="label-p">Username:</p></label>
+        <input type="text" name="username" class="form-control input-lg" id="table-input" value={{request.form.username}}>
+      </div>
+      <div class="form-inline">
+        <label class="table-label"><p class="label-p">Password:</p></label>
+        <input type="password" name="password" class="form-control input-lg" id="table-input" value={{request.form.password}}>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary center-block" id="arrow-button"><img src="https://storage.googleapis.com/carshare-bucket/ui/button.png"  width="90" height="70" alt=""></button>
+  </form>
+
+  <h2 class="orline"><span>OR</span></h2>
+
+  <a href="/login_google" class= "btn btn-success btn-social btn-google center-block" id="google">
+    <span class = "fa fa-google"></span><img src="https://storage.googleapis.com/carshare-bucket/ui/google.png"  width="440" height="80" alt="">
+  </a>
+{% endblock %}

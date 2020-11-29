@@ -1,0 +1,34 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: ssl
+  version: latest
+- name: MySQLdb
+  version: latest
+
+# [START handlers]
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: main.app
+# [END handlers]
+
+beta_settings:
+  cloud_sql_instances: <GCP Project name>:<GCP region>:<Cloud SQL instance name>
+
+env_variables:
+  # SQL Configuration
+  MYSQL_UNIX_SOCKET: '/cloudsql/<GCP Project name>:<GCP region>:<Cloud SQL instance name>'
+  MYSQL_USER: ''
+  MYSQL_PASSWORD: ''
+  MYSQL_DB: ''
+  MYSQL_CURSORCLASS: 'DictCursor'
+  MYSQL_HOST: ''
+  SECRET_KEY: ''
+  OAUTHLIB_INSECURE_TRANSPORT: '1'
+  OAUTHLIB_RELAX_TOKEN_SCOPE: '1'
+  GOOGLE_OAUTH_CLIENT_ID: ''
+  GOOGLE_OAUTH_CLIENT_SECRET: ''

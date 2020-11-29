@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Car List</h1>
+<form action="" method="POST">
+<div class="form-group">
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="property" value="make">
+        <label class="form-check-label" for="inlineCheckbox1">Brand</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="property" value="bodyType">
+        <label class="form-check-label" for="inlineCheckbox2">Body Type</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="property" value="colour">
+        <label class="form-check-label" for="inlineCheckbox3">Colour</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="property" value="seats">
+        <label class="form-check-label" for="inlineCheckbox4">Seats</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" name="property" value="costPerHour">
+        <label class="form-check-label" for="inlineCheckbox5">Cost Per hour</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" name="condition" value="greater">
+        <label class="form-check-label" for="inlineCheckbox6">Greater Than</label>
+    </div>
+    <div class="checkbox-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" name="condition" value="less">
+        <label class="form-check-label" for="inlineCheckbox7">Less Than</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <input type="text" name="keyWord" class="form-control" placeholder="Fill the keyword" value="">
+</div>
+</form>
+    
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Brand</th>
+        <th scope="col">Body Type</th>
+        <th scope="col">Colour</th>
+        <th scope="col">Number of Seats</th>
+        <th scope="col">Cost per Hour</th>
+        <th scope="col">Location</th>
+        <th scope="col">Status</th>
+        <th scope="col"> </th>
+        <th scope="col"> </th>
+        <th scope="col"><a class="btn btn-primary" href="http://localhost:5000/add_car" role="button">Add Car</a></th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    {% for car in cars %}
+      <tr>
+        <th>{{car.make}}</th>
+        <td>{{car.bodyType}}</td>
+        <td>{{car.colour}}</td>
+        <td>{{car.seats}}</td>
+        <td>{{car.costPerHour}}</td>
+        <td>{{car.carLocation}}</td>
+        <td>{{car.carStatus}}</td>
+        <td><a href="remove_car/{{car.id}}"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+          </svg></a></td>
+        <td><a href="http://localhost:5000/update_car_page/{{car.id}}">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+            </a>
+        </td>
+      </tr>
+
+    {% endfor%}
+    </tbody>
+  </table>
+  
+
+{% endblock %}

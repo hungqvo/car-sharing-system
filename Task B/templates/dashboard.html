@@ -1,0 +1,113 @@
+<script>
+    barData = []
+//     fetch("http://localhost:5000/get_car_usage")
+//     .then(response => response.json())
+//   .  then(res => barData = res);
+    pieData = []
+	lineData = [{ x: new Date(2020, 0, 1), y: -1 },
+	{ x: new Date(2020, 1, 1), y: 0 },
+	{ x: new Date(2020, 2, 1), y: 0 },
+	{ x: new Date(2020, 3, 1), y: 0 },
+	{ x: new Date(2020, 4, 1), y: 0 },
+	{ x: new Date(2020, 5, 1), y: 0 },
+	{ x: new Date(2020, 6, 1), y: 0 },
+	{ x: new Date(2020, 7, 1), y: 0 },
+	{ x: new Date(2020, 8, 1), y: 0 },
+	{ x: new Date(2020, 9, 1), y: 0 },
+	{ x: new Date(2020, 10, 1), y: 0 },
+	{ x: new Date(2020, 11, 1), y: 0 },
+	]
+
+    fetch("http://localhost:5000/get_car_status_audit")
+    .then(response => response.json())
+  	.then(res => pieData = res)
+	.then(
+	fetch("http://localhost:5000/get_car_usage")
+    .then(response => response.json())
+    .then(res => barData = res)
+	.then(
+	fetch("http://localhost:5000/get_monthly_revenue")
+    .then(response => response.json())
+    .then(res =>  {for (i = 0; i< lineData.length;i++){
+		lineData[i].y =res.revenue[i]
+  	}} )
+	)
+	).then(
+
+
+    window.onload = function () {
+
+    var barChart = new CanvasJS.Chart("barChartContainer", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title:{
+            text: "Car Usage"
+        },
+        axisY: {
+            title: " "
+        },
+        data: [{        
+            type: "column",  
+            showInLegend: true, 
+            legendMarkerColor: "grey",
+            legendText: "number of times each car used",
+            dataPoints: barData
+        }]
+    });
+    
+
+    var pieChart = new CanvasJS.Chart("pieChartContainer", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Current Car Status"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 25,
+		toolTipContent: "<b>{label}</b>: {y}",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		indexLabel: "{label} - {y}",
+		dataPoints:pieData
+        }]
+    });
+    
+    var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Monthly Revenue"
+	},
+	axisX: {
+		title: "Time"
+	},
+	axisY: {
+		title: "Dola",
+		suffix: "$",
+		includeZero: true
+	},
+	data: [{
+		type: "line",
+		name: "Monthly Revenue",
+		connectNullData: true,
+		//nullDataLineDashType: "solid",
+		xValueType: "dateTime",
+		xValueFormatString: "DD MMM, YYYY ",
+		yValueFormatString: "#,##0.##\"%\"",
+		dataPoints: lineData
+	}]
+});
+barChart.render();
+pieChart.render();
+chart.render();
+	})
+    </script>
+    {% extends 'layout.html' %}
+    {% block body %}
+    <div id="barChartContainer" style="height: 300px; width: 100%;"></div>
+    <div id="pieChartContainer" style="height: 300px; width: 100%;"></div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div> 
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    {% endblock%}

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1 class="giant-title" id="center">Search</h1>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+        <div class="column-form">
+            <div class="table-form">
+                {{ render_field(form.make) }}
+                {{ render_field(form.bodyType) }}
+                {{ render_field(form.colour) }}
+            </div>
+        </div>
+
+        <div class="column-form">
+            <div class="table-form">
+                {{ render_field(form.seats) }}
+                {{ render_field(form.costPerHour) }}
+                {{ render_field(form.carStatus) }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary center-block" id="arrow-button"><img src="https://storage.googleapis.com/carshare-bucket/ui/button.png"  width="90" height="70" alt=""></button>
+    </form>
+    </ul>
+{% endblock %}

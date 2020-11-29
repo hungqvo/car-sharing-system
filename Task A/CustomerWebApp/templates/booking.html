@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="">
+
+    <div class="column-form" style="padding-bottom: 100px;">
+      <div>
+        <h1 class="giant-title" style="line-height: 70%;">{{ car.make | upper }}</h1>
+        <p class="giant-title" style="line-height: 100%;">{{ car.carName | lower }}</p>
+      </div>
+
+      <div style="display: table; padding-top: 25px;">
+
+        {{ render_field(form.bookingDate) }}
+        <div style="display: table-row;">
+          <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+            <p class="label-p" style="font-size: 20px">Rent date (DD-MM-YYYY)</p>
+          </div>
+          <div style="display: table-cell;"></div>
+        </div>
+
+        {{ render_field(form.timeFrom) }}
+        <div style="display: table-row;">
+          <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+            <p class="label-p" style="font-size: 20px">Rent start time (HH:MM)</p>
+          </div>
+          <div style="display: table-cell;"></div>
+        </div>
+
+        {{ render_field(form.nOHours) }}
+        <div style="display: table-row;">
+          <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+            <p class="label-p" style="font-size: 20px">Rent duration in hours (number only)</p>
+          </div>
+          <div style="display: table-cell;"></div>
+        </div>
+
+        {% if session.login_type=="google" %}
+
+          {{ render_field(form.eventName) }}
+          <div style="display: table-row;">
+            <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+              <p class="label-p" style="font-size: 20px">Name of Google Calendar event</p>
+            </div>
+            <div style="display: table-cell;"></div>
+          </div>
+
+          {{ render_field(form.cid) }}
+          <div style="display: table-row;">
+            <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+              <p class="label-p" style="font-size: 20px">Your Google Calendar ID</p>
+            </div>
+            <div style="display: table-cell;"></div>
+          </div>
+          {% for cal in calendars %}
+            <div style="display: table-row;">
+              <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+                <p class="label-p" style="font-size: 20px">ID: {{cal.id}} - Calendar Name: {{cal.name}}</p>
+              </div>
+              <div style="display: table-cell;"></div>
+            </div>
+          {% endfor %}
+
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="arrow-button" style="padding: 0"><p class="bold-booking black-link" id="hover" style="font-size: 32px; text-decoration: underline;">FINISH BOOKING</p></button>
+
+    </div>
+
+    <div class="column-form"><img style="width: 150%;" src="{{ car.carImage }}"></div>
+
+  </form>
+{% endblock %}

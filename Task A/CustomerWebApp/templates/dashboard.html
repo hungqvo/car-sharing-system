@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <!-- <h1>Dashboard <small> Welcome session.username-session.id</small></h1> -->
+
+  <div style="display: table">
+
+    {% for booking in bookings %}
+      {% for car in cars %}
+        {% if car.id == booking.carId %}
+          <div style="display: table-row;">
+            <div class="car-column">
+              <div>
+                <h1 class="giant-title" style="line-height: 70%;">{{ car.make | upper }}</h1>
+                <p class="giant-title" style="line-height: 100%;">{{ car.carName | lower }}</p>
+              </div>
+
+              <div style="line-height: 250%; padding-top: 25px;">
+                <p class="label-p" style="font-size: 32px">SEATS: {{ car.seats }}</p>
+                <p class="label-p" style="font-size: 32px">COLOUR: {{ car.colour }}</p>
+                <p class="label-p" style="font-size: 32px">BRAND: {{ car.make | upper }}</p>
+                <p class="label-p" style="font-size: 32px">COSTS: ${{ car.costPerHour }}/HOUR</p>
+                <p class="label-p" style="font-size: 32px">BOOK ON DATE: {{ booking.bookingDate }}</p>
+                <p class="label-p" style="font-size: 32px">BOOK HOUR: {{ booking.timeFrom }}</p>
+                <p class="label-p" style="font-size: 32px">DURATION: {{ booking.nOHours }}</p>
+              </div>
+
+              <form action="{{url_for('cancel_booking', id=booking.id, car_id=booking.carId)}}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-primary" id="arrow-button" style="padding: 0"><p class="bold-booking black-link" id="hover" style="font-size: 32px; text-decoration: underline;">CANCEL THIS BOOKING</p></button>
+              </form>
+            </div>
+
+            <div class="car-column">
+              <img style="width: 150%;" src="{{ car.carImage }}">
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+  </div>
+
+{% endblock %}
+  

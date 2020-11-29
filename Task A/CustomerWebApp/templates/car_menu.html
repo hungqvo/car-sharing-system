@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    
+    <!-- <h1 class="label-p" style="font-size: 45px; text-align: center;">Select A Category</h1> -->
+
+    <div style="display: table; padding-top: 60px;">
+        <div style="display: table-row;">
+        
+            {% for cate in cates %}
+                <div class="category-column">
+                    <a href="/car_menu/{{ cate.bodyType | lower}}">
+                        <img src="{{cate.carImage}}" style="width: 100%;">
+                    </a>
+                </div>
+            {% endfor %}
+        
+        </div>
+
+
+        <div style="display: table-row;">
+        
+            {% for cate in cates %}
+                <div class="category-column">
+                    <a class="black-link" id="hover" style="text-decoration: none;" href="/car_menu/{{ cate.bodyType | lower}}">
+                        <p style="font-family: 'Open Sans'; font-weight: 800; font-size: 38px; text-align: center;">{{cate.bodyType}}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        
+        </div>
+    </div>
+    
+{% endblock %}

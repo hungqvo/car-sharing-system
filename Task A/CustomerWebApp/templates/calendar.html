@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="box" id="box_calendar">
+        <div class="header" id="header_calendar">
+            <h1>Add Event to Google Calendar</h1>
+        </div>
+        <br>
+        <button class="button" id="getCalendars" style="vertical-align:middle"><span>Get Calendars</span></button>
+
+        <div class="container" id="container_calendar">
+            Enter Event Name
+            <input id="input_calendar" type="text" id="eventName">
+            <br>
+            Enter Event Start Time y-m-d h:m:s <br>(9/20/2017 3:00PM = 2017-09-20 15:00:00)
+            <input id="input_calendar" type="text" id="startTime">
+            <br>
+            Enter Event End time y-m-d h:m:s
+            <input id="input_calendar" type="text" id="endTime">
+            <br>
+            Enter Calendar ID:
+            <!-- <input type="text" id="calendarID"> -->
+            <div id="calendars"></div>
+            <br>
+            <button class="button" id="submit_calendar" style="vertical-align:middle"><span>Submit</span></button>
+        </div>
+    </div>
+
+    <h1>Add Calendar Event Form</h1>
+    {% from "includes/_formhelpers.html" import render_field %}
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>Event Title</label>
+            {{ render_field(form.eventName, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            <label>Start Time</label>
+            {{ render_field(form.sTime, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            <label>End Time</label>
+            {{ render_field(form.eTime, class_="form-control") }}
+        </div>
+        <div class="form-group">
+            <label>Confirm your calendar id by retyping the id into the field</label>
+            <ul>
+            {% for cal in calendars %}
+                <li>ID: {{cal.id}} - Calendar Name: {{cal.name}}</li>
+            {% endfor %}
+            </ul>  
+            {{ render_field(form.cid, class_="form-control") }}
+        </div>
+        <p><input class="btn btn-primary" type="submit" value="Submit"></p>
+    </form>
+{% endblock %}

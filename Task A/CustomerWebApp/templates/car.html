@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Car Information</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Car Code</th>
+        <th scope="col">Make</th>
+        <th scope="col">Body Type</th>
+        <th scope="col">Color</th>
+        <th scope="col">Seats</th>
+        <th scope="col">Car Location</th>
+        <th scope="col">Cost (VND/hr)</th>
+        <th scope="col">Car Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{car.id}}</td>
+        <td>{{car.carCode}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.bodyType}}</td>
+        <td>{{car.colour}}</td>
+        <td>{{car.seats}}</td>
+        <td>{{car.carLocation}}</td>
+        <td>{{car.costPerHour}}</td>
+        <td>{{car.carStatus}}</td>
+        {% if car.carStatus!="Available" %}
+        <td><button class="btn btn-primary">Booked</button></td>
+        {% else %}
+        <td><a class="btn btn-primary" href="{{ url_for('make_booking', id=car.id) }}">Book</a></td>
+        {% endif %}
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div style="display: table">
+
+        {% for car in cars %}
+
+            <div style="display: table-row;">
+                <div class="car-column">
+                    <div>
+                        <h1 class="giant-title" style="line-height: 70%;">{{ car.make | upper }}</h1>
+                        <p class="giant-title" style="line-height: 100%;">{{ car.carName | lower }}</p>
+                    </div>
+                    
+                    <div style="line-height: 250%; padding-top: 25px;">
+                        <p class="label-p" style="font-size: 32px">SEATS: {{ car.seats }}</p>
+                        <p class="label-p" style="font-size: 32px">COLOUR: {{ car.colour }}</p>
+                        <p class="label-p" style="font-size: 32px">BRAND: {{ car.make | upper }}</p>
+                        <p class="label-p" style="font-size: 32px">COSTS: ${{ car.costPerHour }}/HOUR</p>
+                    </div>
+                
+                </div>
+
+                <div class="car-column">
+                    <img style="width: 150%;" src="{{ car.carImage }}">
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

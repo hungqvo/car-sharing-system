@@ -1,0 +1,18 @@
+{% macro render_field(field) %}
+  <!-- <div class="table-form-group"> -->
+    <div class="form-inline">
+      {{ field.label(class_="table-label") }}
+      {{ field(class_="form-control input-lg")|safe }}
+    </div>
+  <!-- </div> -->
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <div style="display: table-row;">
+        <div style="display: table-cell; max-width: 1px; overflow: visible; white-space: nowrap;">
+          <p style="font-family: 'Open Sans'; font-weight: 800; font-size: 20px">{{ error }}</p>
+        </div>
+        <div style="display: table-cell;"></div>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endmacro %}

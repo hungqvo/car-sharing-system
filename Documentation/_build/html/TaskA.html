@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task A &#8212; Assignment 2 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to COSC2790_PIoT_Assignment_2’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="task-a">
+<h1>Task A<a class="headerlink" href="#task-a" title="Permalink to this headline">¶</a></h1>
+<p>I - How to run car sharing system web application built for customers</p>
+<p>First steps:</p>
+<ul>
+<li><p>Create a project in google cloud platform using your own google account</p></li>
+<li><p>Create a sql instance, make sure to provide password to root default user, then create a database named “car_sharing_system”</p></li>
+<li><p>We will use Chrome MYSQL Admin browser app to make connection to our created database</p>
+<ul class="simple">
+<li><p>First, from your google cloud SQL instance page, go to Connections, in Connectivity, select Public IP, then Add network, inside Add network,</p></li>
+</ul>
+<p>give a name and the ip address of your pc (you can google “my ip” to obtain your ip address), once Done, make sure to hit Save and check if your new
+network is added</p>
+<ul class="simple">
+<li><p>Then, open Chrome MYSQL Admin, also, open Overview in your cloud SQL instance, fill Name with Connection name in Overview, fill Host name with</p></li>
+</ul>
+<p>Public IP address in Overview, Port no. is 3306, User name is root, Password is the one you set earlier above</p>
+<ul class="simple">
+<li><p>Connect and access your car_sharing_system database, you can save your connection with Add as favorite</p></li>
+<li><p>Find and choose Query option in the top menu bar, then enter these queries to create tables:</p></li>
+</ul>
+<dl class="simple">
+<dt>CREATE TABLE users (</dt><dd><p>id VARCHAR(36),
+username VARCHAR(30),
+firstname VARCHAR(30),
+lastname VARCHAR(30),
+pwd VARCHAR(255),
+salt VARCHAR(16),
+gmail VARCHAR(50),
+userType VARCHAR(8),
+macAd VARCHAR(17),
+gg_id VARCHAR(100),
+PRIMARY KEY (id),
+UNIQUE (username)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>);
+CREATE TABLE cars (</p>
+<blockquote>
+<div><p>id VARCHAR(36),
+carCode VARCHAR(6),
+make VARCHAR(30),
+carName VARCHAR(100),
+bodyType VARCHAR(10),
+colour VARCHAR(20),
+seats INTEGER,
+carLocation VARCHAR(50),
+costPerHour INTEGER,
+carStatus VARCHAR(15),
+carImage VARCHAR(255),
+PRIMARY KEY (id)</p>
+</div></blockquote>
+<p>);
+CREATE TABLE bookings (</p>
+<blockquote>
+<div><p>id VARCHAR(36),
+cid VARCHAR(255),
+eid VARCHAR(255),
+userId VARCHAR(36),
+carId VARCHAR(36),
+bookingDate VARCHAR(10),
+timeFrom VARCHAR(5),
+nOHours INTEGER,
+PRIMARY KEY (id),
+FOREIGN KEY (userId) REFERENCES users(id),
+FOREIGN KEY (carId) REFERENCES cars(id)</p>
+</div></blockquote>
+<p>);
+CREATE TABLE issues (</p>
+<blockquote>
+<div><p>id VARCHAR(36),
+carId varchar(36),
+issueDetail varchar(50),
+longitude FLOAT,
+latitude FLOAT,
+timeNdate VARCHAR(19),
+issueStatus VARCHAR(10)</p>
+</div></blockquote>
+<p>);</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Execute and you can view your created tables now</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Next, follow this guide to obtain your own Client ID and Client Secret Key from GCP: <a class="reference external" href="https://developers.google.com/identity/sign-in/web/sign-in">https://developers.google.com/identity/sign-in/web/sign-in</a>,
+only complete the steps provided in Create authorization credentials section:
++ Remember, in the Credentials section of OAuth 2.0 Client IDs of your webapp, make sure to edit Authorized JavaScript origins and</p>
+<blockquote>
+<div><p>Authorized redirect URIs:
+. Authorized JavaScript origins: <a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com –&gt; your_google_app_url
+. Authorized redirect URIs:
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/oauth2callback,
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/login/google/authorized,
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/dashboard –&gt; basically, when your login is authorized, you will be redirected to the dashboard of your webapp</p>
+</div></blockquote>
+</li>
+<li><p>After that, open and edit app.yaml file of this project, you should be able to fill all the config variables with your own obtained cresidentials
+relating to your cloud SQL instance, Client ID and Client Secret Key from GCP, also SECRET_KEY can be defined by yourself</p></li>
+<li><p>Let’s deploy your app to GCP, before that, make sure you already created a project in GCP, also, you need to install google cloud sdk to use
+its shell to execute the command “gcloud app deploy” for deploying your app. Before running “gcloud app deploy”, you can preset which project
+will be your deployment destination, by running this cmd “gcloud config set project MY-PROJECT-ID”.</p></li>
+<li><p>After deployment, you can use the app via project url, you can get the url from your App Engine dashboard</p></li>
+<li><p>Finally, for using REST api, please use Postman and follow the url specified in the code</p></li>
+<li><p>Overall REST request urls:
++ GET, POST, PUT: &lt;your_google_app_url&gt;/api/&lt;table_name&gt;/
++ GET BY ID, DELETE: &lt;your_google_app_url&gt;/api/&lt;table_name&gt;/&lt;record_id&gt;
++ For POST, PUT requests, please first edit the Headers in Postman tool as follow:</p>
+<blockquote>
+<div><p>. Accept : application/json
+. Content-Type : application/json
+. Prepare JSON Body for POST: {“id”: &lt;your_record_id&gt;,”&lt;your_table_column_name&gt;”: “&lt;some_value&gt;”, …}
+. Prepare JSON Body for PUT: {“id”: &lt;your_record_id&gt; ,”&lt;your_table_column_name&gt;”: “&lt;some_value&gt;”, …}</p>
+</div></blockquote>
+</li>
+<li><p>Final update: in order to enable feature Google App Calendar api, you need to prepare a file named client_secrets.json.
++ This particular file can be downloaded from the OAuth 2.0 Client IDs of your webapp (follow this link: <a class="reference external" href="https://console.developers.google.com/apis/credentials">https://console.developers.google.com/apis/credentials</a>)</p>
+<blockquote>
+<div><p>(remember the steps on how to obtain Client ID and Client Secret Key)</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Remember, in the Credentials section of OAuth 2.0 Client IDs of your webapp, make sure to edit Authorized JavaScript origins and
+Authorized redirect URIs:
+. Authorized JavaScript origins: <a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com –&gt; your_google_app_url
+. Authorized redirect URIs:
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/oauth2callback,
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/login/google/authorized,
+<a class="reference external" href="https:/">https:/</a>/&lt;your_project_id&gt;.df.r.appspot.com/dashboard –&gt; basically, when your login is authorized, you will be redirected to the dashboard of your webapp</p></li>
+<li><p>Make sure to paste your downloaded file into the project directory and rename it as client_secrets.json</p></li>
+</ul>
+</li>
+<li><p>You can try my deployed app through this link: <a class="reference external" href="https://carshare-289209.df.r.appspot.com/">https://carshare-289209.df.r.appspot.com/</a></p></li>
+<li><p>For REST API testing urls:
++ <a class="reference external" href="https://carshare-289209.df.r.appspot.com/api/cars">https://carshare-289209.df.r.appspot.com/api/cars</a>
++ <a class="reference external" href="https://carshare-289209.df.r.appspot.com/api/users">https://carshare-289209.df.r.appspot.com/api/users</a>
++ <a class="reference external" href="https://carshare-289209.df.r.appspot.com/api/bookings">https://carshare-289209.df.r.appspot.com/api/bookings</a>
++ <a class="reference external" href="https://carshare-289209.df.r.appspot.com/api/issues">https://carshare-289209.df.r.appspot.com/api/issues</a>
+Remember to follow the REST API guide above to test these urls properly</p></li>
+<li><p>For the UI to work and display properly, add 3 entries into the cars table in the database:
++ An entry where bodyType is “Sedan” and make is “category”
++ An entry where bodyType is “SUV” and make is “category”
++ An entry where bodyType is “Minivan” and make is “category”
+Be sure to include the image url for each entry. Every other car entry should have an image url too.</p></li>
+</ul>
+<p>II - How to run unit test for task A</p>
+<p>Unit test for task A. Change the URLs in the script according to your deployment URL.</p>
+<p>Install Pytest via pip. Using a virtual environment is encouraged.</p>
+<p>Use command ‘pytest unitTestTaskA.py’ to run the test. Your app should pass all 20 tests.</p>
+<p>III - AgentPiConnector</p>
+<p>AgentPiConnector contains a script which will be used on Agent Pi machine to allow users to login using their registered account done through customer wep application.</p>
+<p>Once users inputted their credentials, the script will verify user’s credentials and generate a folder containing user’s images if the user agreed to register for facial recognition.</p>
+<p>The folder containing user’s images will be named after the user’s id and the images stored in the folder will later be used for facial recognition.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Assignment 2</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Task A</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to COSC2790_PIoT_Assignment_2’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Group 8.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/TaskA.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
