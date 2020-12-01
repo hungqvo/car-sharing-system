@@ -2,7 +2,6 @@
 Official Working Project Repository of Group 8
 
 https://trello.com/b/Yt8kCvwp/cosc2790piotassignment2group8
-![Image of Trello Board](https://storage.googleapis.com/carshare-bucket/screenshot.png)
 
 Sample User Credentials:
 
