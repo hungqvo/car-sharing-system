@@ -20,6 +20,7 @@ MY CONTRIBUTION TO THIS PROJECT:
 1/ Designed UI and UX for both AP (Client Raspberry Pi) and Web App Booking UI. The html and css is in CustomerWebApp templates (Under Task A FOLDER in the left hand side explorer).
 
 > HTML and CSS for Web App PATH: /CAR-SHARING-SYSTEM/Task A/CustomerWebApp/templates
+
 > The UI UX designs PATH: /CAR-SHARING-SYSTEM/MY UI DESIGNS
 
 2/ Finished Task C and D. Please refer to the Project Description and Requirements (by our lecturer) in the PIoT_Assignment2.pdf located in the HOME directory (/CAR-SHARING-SYSTEM). The UI for AP (raspberry pi client-side) is made and converted into Python PyQT library by QT Designer Studio (QT Framework for Python). 
