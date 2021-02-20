@@ -29,6 +29,6 @@ MY CONTRIBUTION TO THIS PROJECT:
 
 > The UI Python file PATH: /CAR-SHARING-SYSTEM/TASK C & D/ap-code/ap-gui/screen_organizer.py
 
-3/ The project was hosted on Google Cloud Platform (GCP). Because GCP charges fees for any hosted project, our team had to use our credit card to use GCP on trial. After the project is marked, the hosting is turned off, but all related code files are stored here in the project repository. 
+3/ The project was hosted on Google Cloud Platform (GCP). Because GCP charges fees for any hosted project, our team had to use our credit card to use GCP on trial. After the project was marked, the hosting was turned off, but all related code files are stored here in the project repository. 
 
 Thank you very much for reviewing, I hope to be working with your team!
