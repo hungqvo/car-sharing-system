@@ -32,3 +32,7 @@ MY CONTRIBUTION TO THIS PROJECT:
 3/ The project was hosted on Google Cloud Platform (GCP). Because GCP charges fees for any hosted project, our team had to use our credit card to use GCP on trial. After the project was marked, the hosting was turned off, but all related code files are stored here in the project repository. 
 
 Thank you very much for reviewing, I hope to be working with your team!
+
+
+--- OUR TRELLO BOARD SCREENSHOT
+![alt text](https://drive.google.com/file/d/1GJ8BRkMCcL57PY2VVGW7FZxhRqdPNtl6/view?usp=sharing)
