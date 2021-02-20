@@ -18,6 +18,7 @@ Admin account:
 ----- This was a 4 member team effort. The other 3 members were responsible for Task A and B. My part that I volunteered to do is Task C and D (and design all UI UX for this project)
 
 MY CONTRIBUTION TO THIS PROJECT:
+
 1/ Designed UI and UX for both AP (Client Raspberry Pi) and Web App Booking UI. The html and css is in CustomerWebApp templates (Under Task A FOLDER in the left hand side explorer).
 
 > HTML and CSS for Web App PATH: /CAR-SHARING-SYSTEM/Task A/CustomerWebApp/templates
