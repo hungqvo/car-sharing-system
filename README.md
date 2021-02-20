@@ -35,4 +35,4 @@ Thank you very much for reviewing, I hope to be working with your team!
 
 
 --- OUR TRELLO BOARD SCREENSHOT
-![alt text](https://drive.google.com/file/d/1GJ8BRkMCcL57PY2VVGW7FZxhRqdPNtl6/view?usp=sharing)
+![alt text](https://i0.wp.com/s1.uphinh.org/2021/02/21/Trello_Screenshot.png)
